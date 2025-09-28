@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mentoria Sem Rodeios — Formulário + eBook (1 arquivo)</title>
+<!-- Tailwind + fontes para preservar o estilo do seu eBook -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { 'inter': ['Inter','sans-serif'], 'playfair': ['Playfair Display','serif'] },
+        colors: {
+          primary: '#1a1a1a',
+          accent: '#f59e0b',
+          gray: {50:'#f8f9fa',100:'#f1f3f4',200:'#e8eaed',300:'#dadce0',400:'#bdc1c6',500:'#9aa0a6',600:'#80868b',700:'#5f6368',800:'#3c4043',900:'#202124'}
+        }
+      }
+    }
+  }
+</script>
+<style>
+  .wrap{max-width:980px;margin:0 auto}
+  .card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:18px;box-shadow:0 6px 22px rgba(0,0,0,.06)}
+  .hidden{display:none!important}
+  .muted{color:#666}
+  .btn{display:inline-block;background:#111;color:#fff;padding:14px 22px;border-radius:10px;font-weight:800;border:none;cursor:pointer}
+  .btn:hover{filter:brightness(1.05)}
+
+  .ebook-topbar{position:sticky;top:0;background:rgba(255,255,255,.85);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid #eee;z-index:50}
+  .ebook-topbar .inner{max-width:980px;margin:0 auto;display:flex;gap:12px;align-items:center;justify-content:flex-end;padding:10px 16px}
+  .link-outline{display:inline-block;text-decoration:none;padding:10px 14px;border:1px solid #ddd;border-radius:10px;color:#111;background:#fff}
+
+  @page{size:A4;margin:15mm}
+  @media print{
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .no-print{display:none!important}
+    .ebook-topbar{display:none!important}
+    .bg-gradient-to-br,.bg-gradient-to-r,.bg-primary{background:#fff!important}
+    .text-white{color:#000!important}
+    .shadow-2xl,.shadow-lg,.shadow-md,.hover\:shadow-xl{box-shadow:none!important}
+    .px-12{padding-left:0!important;padding-right:0!important}
+  }
+</style>
+</head>
+<body class="font-inter bg-gray-50 text-gray-800 leading-relaxed">
+
+  <!-- ===== VIEW 1: FORM ===== -->
+  <section id="view-form">
+    <div class="bg-gradient-to-br from-primary via-gray-800 to-gray-700 text-white">
+      <div class="wrap py-12 text-center">
+        <div class="w-24 h-1 bg-accent mx-auto mb-6 transform rotate-12"></div>
+        <h1 class="font-playfair text-4xl md:text-5xl font-bold">Mentoria <span class="text-accent">Sem Rodeios</span></h1>
+        <p class="opacity-90 mt-2">Preencha seus dados para acessar o eBook e conhecer a mentoria.</p>
+      </div>
+    </div>
+
+    <div class="wrap px-4 py-8">
+      <div class="card">
+        <form id="leadForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="md:col-span-2">
+            <label class="block text-xs uppercase tracking-wide text-gray-700 mb-1">Nome completo</label>
+            <input type="text" name="nome" required placeholder="Seu nome" class="w-full rounded-lg px-4 py-3 border border-gray-300 outline-none focus:ring-4 focus:ring-accent/30">
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wide text-gray-700 mb-1">E-mail</label>
+            <input type="email" name="email" required placeholder="voce@empresa.com" class="w-full rounded-lg px-4 py-3 border border-gray-300 outline-none focus:ring-4 focus:ring-accent/30">
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wide text-gray-700 mb-1">Telefone (celular)</label>
+            <input type="tel" name="telefone" required placeholder="(11) 9 8765-4321" inputmode="numeric" pattern="\(\d{2}\) \d{4,5}-\d{4}" class="w-full rounded-lg px-4 py-3 border border-gray-300 outline-none focus:ring-4 focus:ring-accent/30">
+            <small class="text-gray-500">Formato: (11) 98765-4321 (celular) ou (21) 3456-7890 (fixo)</small>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wide text-gray-700 mb-1">Área onde atua em RH</label>
+            <select name="area" required class="w-full rounded-lg px-4 py-3 border border-gray-300 outline-none focus:ring-4 focus:ring-accent/30">
+              <option value="" disabled selected>Selecione</option>
+              <option>Talent Acquisition</option>
+              <option>Business Partner (HRBP)</option>
+              <option>Comp & Ben (C&B)</option>
+              <option>Learning & Development (L&D)</option>
+              <option>Diversidade, Equidade e Inclusão (DEI)</option>
+              <option>People Analytics</option>
+              <option>Folha/Operações de RH</option>
+              <option>Outros</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wide text-gray-700 mb-1">Cargo</label>
+            <input type="text" name="cargo" required placeholder="Seu cargo" class="w-full rounded-lg px-4 py-3 border border-gray-300 outline-none focus:ring-4 focus:ring-accent/30">
+          </div>
+
+          <input type="text" name="_hp" class="hidden">
+
+          <input type="hidden" name="utm_source">
+          <input type="hidden" name="utm_medium">
+          <input type="hidden" name="utm_campaign">
+          <input type="hidden" name="utm_term">
+          <input type="hidden" name="utm_content">
+
+          <div class="md:col-span-2">
+            <label class="inline-flex items-start gap-3 text-sm text-gray-700">
+              <input type="checkbox" required class="mt-1">
+              <span>Concordo em receber comunicações sobre mentoria e materiais relacionados. <span class="opacity-75">(Você pode cancelar quando quiser.)</span></span>
+            </label>
+          </div>
+
+          <div class="md:col-span-2 text-center">
+            <button type="submit" class="btn">Acessar eBook</button>
+            <div id="msg" class="mt-2 muted"></div>
+          </div>
+        </form>
+      </div>
+
+      <div class="text-center text-sm text-gray-500 mt-4">© 2025 Mentoria Sem Rodeios. Todos os direitos reservados.</div>
+    </div>
+  </section>
+
+  <!-- ===== VIEW 2: EBOOK (MESMO ARQUIVO, CONTEÚDO CERTO) ===== -->
+  <section id="view-ebook" class="hidden">
+    <div class="ebook-topbar no-print">
+      <div class="inner">
+        <button class="btn" onclick="window.print()">📥 Baixar este ebook (PDF)</button>
+        <a class="link-outline" href="https://bento.me/marianarodeio" target="_blank" rel="noopener">Conheça a mentoria</a>
+      </div>
+    </div>
+
+    
+    <div class="max-w-4xl mx-auto bg-white shadow-2xl">
+        <!-- Capa -->
+        <div class="relative h-screen bg-gradient-to-br from-primary via-gray-800 to-gray-700 flex items-center justify-center text-white overflow-hidden">
+            <div class="absolute inset-0 bg-black opacity-20 z-10"></div>
+            <div class="text-center z-20 px-8">
+                <div class="mb-12">
+                    <div class="w-32 h-1 bg-accent mx-auto mb-8 transform rotate-12"></div>
+                </div>
+                <h1 class="font-playfair text-6xl md:text-7xl font-bold mb-6 leading-tight">
+                    Mentoria<br>
+                    <span class="text-accent">Sem Rodeios</span>
+                </h1>
+                <p class="text-xl md:text-2xl font-light mb-8 max-w-2xl mx-auto opacity-90">
+                    Da teoria à ação: mentoria descomplicada para acelerar resultados reais
+                </p>
+                <div class="w-24 h-1 bg-accent mx-auto"></div>
+            </div>
+            
+            <!-- Elementos decorativos -->
+            <div class="absolute top-20 left-20 w-32 h-32 border border-white opacity-10 rotate-45"></div>
+            <div class="absolute bottom-20 right-20 w-24 h-24 border border-accent opacity-20 rotate-12"></div>
+        </div>
+
+        <!-- Sobre o Autor -->
+        <div class="px-12 py-16 bg-white">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="font-playfair text-4xl font-bold text-primary mb-8 text-center">Sobre o Mentor</h2>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="w-48 h-48 bg-gradient-to-br from-accent to-amber-600 rounded-full mx-auto mb-6"></div>
+                    </div>
+                    <div>
+                        <h3 class="font-inter text-2xl font-bold text-primary mb-4">Mariana Rodeio</h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Formada em Ciências Econômicas pela UFRJ, com formações em aprendizagem autodirigida, gestão da mudança e desenvolvimento humano.
+                        </p>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Tenho mais de 10 anos de experiência em Recursos Humanos, atuando em gestão de talentos, cultura e diversidade, e hoje lidero essas agendas como Talent, OE & Inclusion Manager LATAM South na BAT.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed">
+                            Além disso, atuo como mentora de carreira e liderança, ajudando profissionais a se posicionarem com confiança, clareza e autenticidade.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Índice -->
+        <div class="px-12 py-16 bg-gray-50">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="font-playfair text-4xl font-bold text-primary mb-12 text-center">Índice</h2>
+                <div class="space-y-6">
+                    <div class="flex justify-between items-center py-4 border-b border-gray-200 hover:bg-white hover:px-6 transition-all duration-300 cursor-pointer">
+                        <span class="font-semibold text-lg">Introdução: A Mentoria é o Atalho Certo para Você?</span>
+                        <span class="text-accent font-bold">03</span>
+                    </div>
+                    <div class="flex justify-between items-center py-4 border-b border-gray-200 hover:bg-white hover:px-6 transition-all duration-300 cursor-pointer">
+                        <span class="font-semibold text-lg">1. O Que Esperar de uma Mentoria</span>
+                        <span class="text-accent font-bold">08</span>
+                    </div>
+                    <div class="flex justify-between items-center py-4 border-b border-gray-200 hover:bg-white hover:px-6 transition-all duration-300 cursor-pointer">
+                        <span class="font-semibold text-lg">2. A Mentoria é Para Você?</span>
+                        <span class="text-accent font-bold">18</span>
+                    </div>
+                    <div class="flex justify-between items-center py-4 border-b border-gray-200 hover:bg-white hover:px-6 transition-all duration-300 cursor-pointer">
+                        <span class="font-semibold text-lg">3. Como a Mentoria Funciona na Prática</span>
+                        <span class="text-accent font-bold">24</span>
+                    </div>
+                    <div class="flex justify-between items-center py-4 border-b border-gray-200 hover:bg-white hover:px-6 transition-all duration-300 cursor-pointer">
+                        <span class="font-semibold text-lg">4. A Regra de Ouro do Mentorado</span>
+                        <span class="text-accent font-bold">32</span>
+                    </div>
+                    <div class="flex justify-between items-center py-4 border-b border-gray-200 hover:bg-white hover:px-6 transition-all duration-300 cursor-pointer">
+                        <span class="font-semibold text-lg">5. Preparando-se para o Sucesso</span>
+                        <span class="text-accent font-bold">38</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Introdução -->
+        <div class="px-12 py-16 bg-white">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="text-accent font-bold text-sm tracking-widest uppercase">Introdução</span>
+                    <h2 class="font-playfair text-5xl font-bold text-primary mt-4 mb-6">
+                        A Mentoria é o Atalho<br>Certo para Você?
+                    </h2>
+                    <div class="w-16 h-1 bg-accent mx-auto"></div>
+                </div>
+
+                <div class="prose prose-lg max-w-none">
+                    <p class="text-xl text-gray-600 mb-8 font-light leading-relaxed">
+                        Você sente que sua carreira poderia avançar mais rápido, mas algo te impede? A mentoria de carreira não é uma solução mágica, mas pode ser um poderoso catalisador para o seu crescimento.
+                    </p>
+
+                    <p class="text-gray-700 mb-8 leading-relaxed">
+                        Este guia vai te mostrar o que esperar, qual é o seu papel fundamental nesse processo e como se preparar para uma jornada de transformação que depende, acima de tudo, da sua ação.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Capítulo 1 -->
+        <div class="px-12 py-16 bg-gray-50">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="text-accent font-bold text-sm tracking-widest uppercase">Capítulo 01</span>
+                    <h2 class="font-playfair text-5xl font-bold text-primary mt-4 mb-6">
+                        O Que Esperar de<br>uma Mentoria
+                    </h2>
+                    <div class="w-16 h-1 bg-accent mx-auto"></div>
+                </div>
+
+                <div class="prose prose-lg max-w-none">
+                    <p class="text-xl text-gray-600 mb-8 font-light leading-relaxed">
+                        Alinhar suas expectativas é o primeiro passo para uma mentoria bem-sucedida.
+                    </p>
+
+                    <h3 class="font-inter text-2xl font-bold text-primary mt-12 mb-6">O que um mentor oferece</h3>
+                    
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        Um mentor não vende uma "verdade absoluta". Ele oferece algo muito mais valioso:
+                    </p>
+
+                    <div class="grid md:grid-cols-2 gap-8 my-12">
+                        <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-lg transition-shadow">
+                            <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center mb-4">
+                                <span class="text-white font-bold">👁️</span>
+                            </div>
+                            <h4 class="font-bold text-lg mb-3">Uma visão sobre uma carreira</h4>
+                            <p class="text-gray-600 text-sm">Um caminho possível baseado na experiência dele</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-lg transition-shadow">
+                            <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center mb-4">
+                                <span class="text-white font-bold">⚡</span>
+                            </div>
+                            <h4 class="font-bold text-lg mb-3">"Hacks de caminhos"</h4>
+                            <p class="text-gray-600 text-sm">Atalhos e aprendizados práticos que podem te poupar tempo e erros</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-lg transition-shadow">
+                            <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center mb-4">
+                                <span class="text-white font-bold">🤝</span>
+                            </div>
+                            <h4 class="font-bold text-lg mb-3">Facilitação de networking</h4>
+                            <p class="text-gray-600 text-sm">Acesso a conexões e oportunidades que você talvez não alcançasse sozinho</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-lg transition-shadow">
+                            <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center mb-4">
+                                <span class="text-white font-bold">💝</span>
+                            </div>
+                            <h4 class="font-bold text-lg mb-3">Generosidade</h4>
+                            <p class="text-gray-600 text-sm">Compartilhamento do que ele aprendeu na prática</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50 border-l-4 border-accent p-6 my-8">
+                        <h4 class="font-bold text-primary mb-2">Exemplo Prático:</h4>
+                        <p class="text-gray-700 italic">
+                            "Você quer uma promoção, mas não sabe como navegar a política da empresa. Um mentor não te dará uma fórmula, mas poderá dizer: 'Na minha experiência, antes de uma promoção, eu mapeava os principais stakeholders e agendava conversas informais para apresentar meus resultados. É um caminho possível. Que tal tentarmos adaptar isso para a sua realidade?'."
+                        </p>
+                    </div>
+
+                    <h3 class="font-inter text-2xl font-bold text-primary mt-12 mb-6">A diferença crucial para o Coaching</h3>
+                    
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        Enquanto um coach busca a neutralidade, a mentoria assume que tem um viés. O mentor vai compartilhar a visão dele, os livros que ele leu, as pessoas que ele conhece. E é exatamente essa perspectiva única e experiente que você está buscando.
+                    </p>
+
+                    <div class="grid md:grid-cols-2 gap-6 my-8">
+                        <div class="bg-blue-50 p-6 rounded-lg">
+                            <h4 class="font-bold text-blue-800 mb-2">🎯 Coach perguntaria:</h4>
+                            <p class="text-blue-700 italic">"Quais opções você enxerga?"</p>
+                        </div>
+                        <div class="bg-amber-50 p-6 rounded-lg">
+                            <h4 class="font-bold text-amber-800 mb-2">🧭 Mentor poderia dizer:</h4>
+                            <p class="text-amber-700 italic">"Eu já passei por algo parecido. Uma abordagem que funcionou para mim foi X. Isso te inspira a pensar em alguma solução?"</p>
+                        </div>
+                    </div>
+
+                    <h3 class="font-inter text-2xl font-bold text-primary mt-12 mb-6">Mentoria não é terapia</h3>
+                    
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        É fundamental ter responsabilidade com sua saúde mental. Se você se sente paralisado por ansiedade ou questões emocionais profundas, talvez a terapia seja um caminho mais indicado para construir uma base sólida antes de focar nos desafios profissionais.
+                    </p>
+
+                    <div class="bg-red-50 border-l-4 border-red-400 p-6 my-8">
+                        <h4 class="font-bold text-red-800 mb-2">Exemplo Prático:</h4>
+                        <p class="text-red-700">
+                            Se você tem pavor de falar em público a ponto de ter crises de ansiedade, a mentoria pode ajudar na estrutura da apresentação, mas a terapia é o lugar certo para tratar a raiz dessa ansiedade.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Capítulo 2 -->
+        <div class="px-12 py-16 bg-white">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="text-accent font-bold text-sm tracking-widest uppercase">Capítulo 02</span>
+                    <h2 class="font-playfair text-5xl font-bold text-primary mt-4 mb-6">
+                        A Mentoria é Para Você?<br>
+                        <span class="text-2xl font-normal">O Perfil do Mentorado de Sucesso</span>
+                    </h2>
+                    <div class="w-16 h-1 bg-accent mx-auto"></div>
+                </div>
+
+                <div class="prose prose-lg max-w-none">
+                    <p class="text-xl text-gray-600 mb-8 font-light leading-relaxed">
+                        A mentoria é mais eficaz para um perfil específico de profissional. Veja se você se identifica:
+                    </p>
+
+                    <div class="space-y-8">
+                        <div class="bg-gradient-to-r from-accent/10 to-amber-50 p-8 rounded-lg">
+                            <h4 class="font-bold text-lg mb-4 text-primary flex items-center">
+                                <span class="text-accent mr-3">🚀</span> Você busca crescimento ativo
+                            </h4>
+                            <p class="text-gray-700">
+                                Você não está esperando as coisas acontecerem. Você quer crescer profissionalmente e busca soluções rápidas, pontuais e personalizadas.
+                            </p>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-blue-50 to-blue-100/50 p-8 rounded-lg">
+                            <h4 class="font-bold text-lg mb-4 text-primary flex items-center">
+                                <span class="text-blue-600 mr-3">🎯</span> Você já tem uma base
+                            </h4>
+                            <p class="text-gray-700">
+                                Geralmente, você já tem um bom nível de autoconhecimento e o hábito de estudar e investir na sua carreira.
+                            </p>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-green-50 to-green-100/50 p-8 rounded-lg">
+                            <h4 class="font-bold text-lg mb-4 text-primary flex items-center">
+                                <span class="text-green-600 mr-3">✅</span> Você busca uma "permissão para agir"
+                            </h4>
+                            <p class="text-gray-700 mb-4">
+                                Muitas vezes, você já sabe o que precisa ser feito, mas hesita. Você busca em um profissional que admira a validação e o encorajamento para tomar decisões importantes.
+                            </p>
+                            <div class="bg-white/70 border-l-4 border-green-400 p-4 mt-4">
+                                <p class="text-green-800 italic text-sm">
+                                    <strong>Exemplo:</strong> Você tem uma ideia inovadora, mas tem medo de apresentá-la ao seu diretor. Ao discuti-la com seu mentor e receber um feedback positivo e encorajador, você ganha a confiança que faltava — a "permissão" para agir.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-primary text-white p-8 rounded-lg my-12">
+                        <h3 class="font-inter text-2xl font-bold mb-6 text-accent">A característica mais importante:</h3>
+                        <p class="text-lg leading-relaxed">
+                            Você precisa ter disposição para dedicar <strong>energia</strong>, <strong>tempo</strong> e, principalmente, para <strong>executar as tarefas propostas</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Capítulo 3 -->
+        <div class="px-12 py-16 bg-gray-50">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="text-accent font-bold text-sm tracking-widest uppercase">Capítulo 03</span>
+                    <h2 class="font-playfair text-5xl font-bold text-primary mt-4 mb-6">
+                        Como a Mentoria<br>Funciona na Prática
+                    </h2>
+                    <div class="w-16 h-1 bg-accent mx-auto"></div>
+                </div>
+
+                <div class="prose prose-lg max-w-none">
+                    <p class="text-xl text-gray-600 mb-8 font-light leading-relaxed">
+                        Entender a estrutura do processo ajuda a diminuir a ansiedade e a focar no que importa.
+                    </p>
+
+                    <h3 class="font-inter text-2xl font-bold text-primary mt-12 mb-6">Qual formato é o ideal para você?</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 my-8">
+                        <div class="bg-white p-8 rounded-lg shadow-sm border-l-4 border-accent">
+                            <h4 class="font-bold text-lg mb-4 text-primary">🎯 Mentoria Individual</h4>
+                            <p class="text-gray-700">
+                                É a melhor opção se você busca alto nível de personalização. O processo é construído a partir dos seus objetivos.
+                            </p>
+                        </div>
+                        <div class="bg-white p-8 rounded-lg shadow-sm border-l-4 border-blue-400">
+                            <h4 class="font-bold text-lg mb-4 text-primary">👥 Mentoria em Grupo</h4>
+                            <p class="text-gray-700">
+                                Ideal se você quer aprender com outras pessoas que têm os mesmos objetivos que você. Aqui não há espaço para personalização.
+                            </p>
+                        </div>
+                    </div>
+
+                    <h3 class="font-inter text-2xl font-bold text-primary mt-12 mb-6">A Estrutura Típica (Mentoria Cíclica)</h3>
+                    
+                    <div class="bg-amber-50 p-8 rounded-lg border border-accent/20">
+                        <p class="text-gray-700 text-center text-lg">
+                            <span class="font-bold text-accent">8 sessões de 1 hora</span><br>
+                            <span class="text-gray-600">distribuídas ao longo de</span><br>
+                            <span class="font-bold text-primary">3 meses</span><br>
+                            <span class="text-gray-600 text-sm mt-2 block">Isso te dá tempo para agir entre os encontros</span>
+                        </p>
+                    </div>
+
+                    <h3 class="font-inter text-2xl font-bold text-primary mt-12 mb-6">O que esperar da Primeira Sessão?</h3>
+                    
+                    <div class="bg-blue-50 border-l-4 border-blue-400 p-6 my-8">
+                        <p class="text-blue-800 mb-4">
+                            Esteja pronto para responder a duas perguntas cruciais:
+                        </p>
+                        <div class="space-y-3">
+                            <div class="bg-white/70 p-4 rounded">
+                                <p class="font-semibold text-blue-900">1. "Qual é o seu objetivo com este processo?"</p>
+                            </div>
+                            <div class="bg-white/70 p-4 rounded">
+                                <p class="font-semibold text-blue-900">2. "O que você entenderia como indicadores do seu sucesso?"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 border-l-4 border-green-400 p-6 my-8">
+                        <h4 class="font-bold text-green-800 mb-2">Exemplo Prático:</h4>
+                        <div class="space-y-3">
+                            <div class="bg-red-100 p-3 rounded">
+                                <p class="text-red-800"><span class="font-bold">❌ Objetivo vago:</span> "quero ser um líder melhor"</p>
+                            </div>
+                            <div class="bg-green-100 p-3 rounded">
+                                <p class="text-green-800"><span class="font-bold">✅ Indicador de sucesso claro:</span> "quero, ao final dos 3 meses, ter delegado um projeto complexo com sucesso e recebido um feedback positivo da minha equipe sobre minha comunicação"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="font-inter text-2xl font-bold text-primary mt-12 mb-6">O que acontece entre as sessões?</h3>
+                    
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        O processo não acontece apenas na conversa. Você sairá de cada encontro com tarefas e combinados claros. O mentor irá sugerir atividades, dar exercícios e provocar a ação.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Capítulo 4 -->
+        <div class="px-12 py-16 bg-white">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="text-accent font-bold text-sm tracking-widest uppercase">Capítulo 04</span>
+                    <h2 class="font-playfair text-5xl font-bold text-primary mt-4 mb-6">
+                        A Regra de Ouro<br>do Mentorado:<br>
+                        <span class="text-accent">Você no Comando</span>
+                    </h2>
+                    <div class="w-16 h-1 bg-accent mx-auto"></div>
+                </div>
+
+                <div class="prose prose-lg max-w-none">
+                    <p class="text-xl text-gray-600 mb-8 font-light leading-relaxed">
+                        Seu sucesso na mentoria depende da sua mentalidade e do seu protagonismo.
+                    </p>
+
+                    <div class="bg-primary text-white p-8 rounded-lg mb-12">
+                        <h3 class="font-inter text-2xl font-bold mb-6 text-accent">O Princípio Fundamental</h3>
+                        <p class="text-lg leading-relaxed mb-4">
+                            Lembre-se sempre: <span class="text-accent font-bold">"Saber não muda nada... você precisa fazer/agir/ação"</span>.
+                        </p>
+                        <p class="leading-relaxed">
+                            O conhecimento que você adquire na sessão é apenas o ponto de partida. A transformação real vem da sua execução.
+                        </p>
+                    </div>
+
+                    <div class="space-y-8">
+                        <div class="border border-gray-200 p-8 rounded-lg hover:shadow-lg transition-shadow">
+                            <h4 class="font-bold text-lg mb-4 text-primary flex items-center">
+                                <span class="text-accent mr-3">🤝</span> A Responsabilidade é Compartilhada
+                            </h4>
+                            <p class="text-gray-700">
+                                É impossível para um mentor garantir um resultado que depende da sua ação. Ele pode te dar o melhor caminho, mas se você não fizer, não tem resultado.
+                            </p>
+                        </div>
+
+                        <div class="border border-gray-200 p-8 rounded-lg hover:shadow-lg transition-shadow">
+                            <h4 class="font-bold text-lg mb-4 text-primary flex items-center">
+                                <span class="text-orange-500 mr-3">⚡</span> Esteja Pronto para o Desconforto
+                            </h4>
+                            <p class="text-gray-700">
+                                Mudar "dá trabalho, é exaustivo". É normal sentir desconforto ao constatar que você errou ou que precisa desenvolver uma habilidade. Encare esse sentimento como um sinal de que você está saindo da zona de conforto.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-accent to-amber-600 text-white p-8 rounded-lg my-12">
+                        <h3 class="font-inter text-2xl font-bold mb-6">"Se entregar sem cacarejar não vai conseguir a promoção"</h3>
+                        <p class="text-lg leading-relaxed">
+                            Esta frase resume a atitude necessária. Esteja disposto a se expor, a ser vulnerável, a testar novas abordagens e a executar as tarefas, mesmo que pareçam desafiadoras.
+                        </p>
+                    </div>
+
+                    <div class="bg-purple-50 border-l-4 border-purple-400 p-6 my-8">
+                        <h4 class="font-bold text-purple-800 mb-2">Exemplo Prático:</h4>
+                        <p class="text-purple-700">
+                            Seu mentor aponta que sua dificuldade em dizer "não" está te sobrecarregando. A constatação é desconfortável. Em vez de se justificar, você acolhe o feedback, discute estratégias e se compromete a testar uma pequena recusa na semana seguinte. Isso é se entregar ao processo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Capítulo 5 -->
+        <div class="px-12 py-16 bg-gray-50">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="text-accent font-bold text-sm tracking-widest uppercase">Capítulo 05</span>
+                    <h2 class="font-playfair text-5xl font-bold text-primary mt-4 mb-6">
+                        Preparando-se<br>Para o Sucesso
+                    </h2>
+                    <div class="w-16 h-1 bg-accent mx-auto"></div>
+                </div>
+
+                <div class="prose prose-lg max-w-none">
+                    <h3 class="font-inter text-2xl font-bold text-primary mt-12 mb-6">Como escolher seu mentor?</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-white p-8 rounded-lg shadow-sm border-l-4 border-blue-400">
+                            <h4 class="font-bold text-lg mb-4 text-primary flex items-center">
+                                <span class="text-blue-500 mr-3">🎯</span> Busque alinhamento
+                            </h4>
+                            <p class="text-gray-700">
+                                Acompanhe o conteúdo do mentor nas redes sociais. Ali você encontrará suas crenças, vieses e valores. Veja se há conexão.
+                            </p>
+                        </div>
+
+                        <div class="bg-white p-8 rounded-lg shadow-sm border-l-4 border-green-400">
+                            <h4 class="font-bold text-lg mb-4 text-primary flex items-center">
+                                <span class="text-green-500 mr-3">✅</span> Procure por coerência
+                            </h4>
+                            <p class="text-gray-700">
+                                O mentor pratica o que fala? Ele é seu próprio case de sucesso?
+                            </p>
+                        </div>
+
+                        <div class="bg-white p-8 rounded-lg shadow-sm border-l-4 border-purple-400">
+                            <h4 class="font-bold text-lg mb-4 text-primary flex items-center">
+                                <span class="text-purple-500 mr-3">🔄</span> Verifique a relevância
+                            </h4>
+                            <p class="text-gray-700">
+                                O mentor está atualizado sobre as tendências do mercado (Zeitgeist)?
+                            </p>
+                        </div>
+                    </div>
+
+                    <h3 class="font-inter text-2xl font-bold text-primary mt-12 mb-6">Como se preparar para a primeira sessão?</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-amber-50 p-6 rounded-lg border border-accent/20">
+                            <h4 class="font-bold text-amber-800 mb-3">📝 Reflita</h4>
+                            <p class="text-amber-700">
+                                Sobre seus objetivos e pense em indicadores de sucesso concretos.
+                            </p>
+                        </div>
+                        <div class="bg-blue-50 p-6 rounded-lg border border-blue-200">
+                            <h4 class="font-bold text-blue-800 mb-3">🚀 Chegue preparado</h4>
+                            <p class="text-blue-700">
+                                Com a mente aberta, pronto para ouvir e, principalmente, para agir.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-green-50 to-green-100 p-8 rounded-lg mt-12 border border-green-200">
+                        <h4 class="font-bold text-green-800 mb-4 flex items-center">
+                            <span class="text-green-600 mr-3">💡</span> Dica Final
+                        </h4>
+                        <p class="text-green-700">
+                            Ao final do processo, uma ótima forma de fechar o ciclo é oferecer uma recomendação no LinkedIn para seu mentor, validando o trabalho dele e fortalecendo a reputação de ambos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Metodologia -->
+        <div class="px-12 py-16 bg-primary text-white">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="font-playfair text-4xl font-bold mb-8">Nossa Metodologia</h2>
+                <p class="text-xl mb-12 opacity-90 leading-relaxed">
+                    Um processo estruturado em 5 etapas para garantir resultados consistentes
+                </p>
+                
+                <div class="grid md:grid-cols-5 gap-6">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="font-bold text-primary">1</span>
+                        </div>
+                        <h4 class="font-bold mb-2">Diagnóstico</h4>
+                        <p class="text-sm opacity-80">Avaliação completa da situação atual</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="font-bold text-primary">2</span>
+                        </div>
+                        <h4 class="font-bold mb-2">Planejamento</h4>
+                        <p class="text-sm opacity-80">Definição de objetivos e estratégias</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="font-bold text-primary">3</span>
+                        </div>
+                        <h4 class="font-bold mb-2">Execução</h4>
+                        <p class="text-sm opacity-80">Implementação das ações planejadas</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="font-bold text-primary">4</span>
+                        </div>
+                        <h4 class="font-bold mb-2">Monitoramento</h4>
+                        <p class="text-sm opacity-80">Acompanhamento e ajustes necessários</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="font-bold text-primary">5</span>
+                        </div>
+                        <h4 class="font-bold mb-2">Evolução</h4>
+                        <p class="text-sm opacity-80">Consolidação e próximos passos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="px-12 py-16 bg-gradient-to-r from-accent to-amber-600">
+            <div class="max-w-3xl mx-auto text-center text-white">
+                <div class="w-16 h-1 bg-white mx-auto mb-6 transform -rotate-12"></div>
+                <h2 class="font-playfair text-4xl font-bold mb-6">
+                    Pronto Para Transformar<br>Sua Abordagem?
+                </h2>
+                <p class="text-xl mb-8 opacity-90">
+                    Descubra como a mentoria sem rodeios pode acelerar seus resultados
+                </p>
+                <a href="https://bento.me/marianarodeio" target="_blank" rel="noopener" class="bg-white text-primary font-bold py-4 px-12 rounded-lg hover:shadow-xl transition-shadow text-lg inline-block">
+                    Comece Agora
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="px-12 py-8 bg-gray-900 text-white text-center">
+            <p class="text-sm opacity-70">© 2025 Mentoria Sem Rodeios. Todos os direitos reservados.</p>
+        </div>
+    </div>
+
+  </section>
+
+<script>
+(function(){
+  const BACKEND_URL = "https://script.google.com/macros/s/AKfycbxv5-Q6xALHlBwc7rDwWmHU9Psg9u03Q97S8qfadwQWDRihgZeWI6c0At1iEIqZHJAwbQ/exec";
+
+  function onlyDigits(s){ return (s||'').replace(/\D/g,''); }
+
+  function formatBRPhone(val){
+    let v = onlyDigits(val).slice(0,11);
+    if (v.length >= 11) return `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
+    if (v.length >= 10) return `(${v.slice(0,2)}) ${v.slice(2,6)}-${v.slice(6)}`;
+    if (v.length >= 6)  return `(${v.slice(0,2)}) ${v.slice(2,6)}-${v.slice(6)}`;
+    if (v.length >= 2)  return `(${v.slice(0,2)}) ${v.slice(2)}`;
+    if (v.length >= 1)  return `(${v}`;
+    return '';
+  }
+
+  function fillUTMs(root){
+    const p = new URLSearchParams(location.search);
+    ["utm_source","utm_medium","utm_campaign","utm_term","utm_content"].forEach(k=>{
+      const el = root.querySelector(`[name="${k}"]`);
+      if (el) el.value = p.get(k) || "";
+    });
+  }
+
+  async function postFormEncoded(url, payload){
+    const body = new URLSearchParams(payload).toString();
+    try { await fetch(url, { method:"POST", body }); } catch(_){
+      /* Mesmo que não possamos ler a resposta por CORS, o POST é enviado */
+    }
+  }
+
+  const formView  = document.getElementById("view-form");
+  const ebookView = document.getElementById("view-ebook");
+  const form      = document.getElementById("leadForm");
+  const msg       = document.getElementById("msg");
+  const phone     = form.querySelector('input[name="telefone"]');
+  phone.addEventListener("input", ()=>{ phone.value = formatBRPhone(phone.value); });
+
+  fillUTMs(form);
+
+  form.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    const fd = new FormData(form);
+    if (fd.get("_hp")) return;
+
+    const raw = (fd.get("telefone")||"").toString();
+    const digits = onlyDigits(raw);
+    if (!(digits.length===10 || digits.length===11)) {
+      msg.textContent = "Telefone inválido: use (11) 98765-4321 ou (21) 3456-7890.";
+      return;
+    }
+    if (digits.length===11 && digits[2] !== '9') {
+      msg.textContent = "Celular no Brasil costuma ter 11 dígitos e começar com 9 após o DDD.";
+      return;
+    }
+
+    const payload = {
+      nome: (fd.get("nome")||"").toString().trim(),
+      email: (fd.get("email")||"").toString().trim(),
+      telefone: raw,
+      area: fd.get("area")||"",
+      cargo: (fd.get("cargo")||"").toString().trim(),
+      utm_source: fd.get("utm_source")||"",
+      utm_medium: fd.get("utm_medium")||"",
+      utm_campaign: fd.get("utm_campaign")||"",
+      utm_term: fd.get("utm_term")||"",
+      utm_content: fd.get("utm_content")||"",
+      source: "landing_mentoria_singlefile_v2",
+      ts: new Date().toISOString()
+    };
+
+    msg.textContent = "Enviando...";
+    await postFormEncoded(BACKEND_URL, payload);
+
+    formView.classList.add("hidden");
+    ebookView.classList.remove("hidden");
+    window.scrollTo({ top:0, behavior:"smooth" });
+  });
+})();
+</script>
+</body>
+</html>
