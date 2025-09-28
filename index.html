@@ -8,25 +8,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        fontFamily: { 'inter': ['Inter','sans-serif'], 'playfair': ['Playfair Display','serif'] },
-        colors: {
-          primary: '#1a1a1a',
-          accent: '#f59e0b',
-          gray: {50:'#f8f9fa',100:'#f1f3f4',200:'#e8eaed',300:'#dadce0',400:'#bdc1c6',500:'#9aa0a6',600:'#80868b',700:'#5f6368',800:'#3c4043',900:'#202124'}
-        }
-      }
-    }
-  }
+  tailwind.config = {  theme: {    extend: {      fontFamily: { 'inter': ['Inter','sans-serif'], 'playfair': ['Playfair Display','serif'] },      colors: {        primary: '#0A3D62',        accent: '#20C997',        gray: {50:'#f8f9fa',100:'#f1f3f4',200:'#e8eaed',300:'#dadce0',400:'#bdc1c6',500:'#9aa0a6',600:'#80868b',700:'#5f6368',800:'#3c4043',900:'#202124'}      }    }  }}
 </script>
 <style>
   .wrap{max-width:980px;margin:0 auto}
   .card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:18px;box-shadow:0 6px 22px rgba(0,0,0,.06)}
   .hidden{display:none!important}
   .muted{color:#666}
-  .btn{display:inline-block;background:#111;color:#fff;padding:14px 22px;border-radius:10px;font-weight:800;border:none;cursor:pointer}
+  .btn{display:inline-block;background:var(--cta);color:#fff;padding:14px 22px;border-radius:10px;font-weight:800;border:none;cursor:pointer}
   .btn:hover{filter:brightness(1.05)}
 
   .ebook-topbar{position:sticky;top:0;background:rgba(255,255,255,.85);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid #eee;z-index:50}
@@ -44,6 +33,69 @@
     .px-12{padding-left:0!important;padding-right:0!important}
   }
 </style>
+
+<style>
+  h1, h2, h3 { color: var(--primary); }
+  .hero, .ebook-hero { background: linear-gradient(135deg, var(--primary), #0a2b46) !important; }
+  .w-24.h-1 { background: var(--accent) !important; }
+  .link-outline { border-color: #ddd; color: #111; background: #fff; }
+</style>
+
+
+<style id="btn-fix">
+  .btn{
+    background: var(--cta) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 14px 22px !important;
+    font-weight: 800 !important;
+    cursor: pointer !important;
+    display: inline-block !important;
+  }
+  .btn:hover{ filter: brightness(0.95) !important; }
+  .btn:focus{ outline: 2px solid rgba(0,0,0,.15) !important; outline-offset: 2px !important; }
+</style>
+
+
+<style id="btn-color-fix">
+  button[disabled]{
+    background: #f1b6d1 !important;
+    color: #fff !important;
+    opacity: 0.7 !important;
+  }
+</style>
+
+
+<style id="btn-override-ultimate">
+  #submitBtn, #printBtn{
+    background:#D63384 !important;
+    color:#ffffff !important;
+    border:none !important;
+    border-radius:10px !important;
+    padding:14px 22px !important;
+    font-weight:800 !important;
+    display:inline-block !important;
+    box-shadow:0 2px 6px rgba(0,0,0,.12) !important;
+    opacity:1 !important;
+    pointer-events:auto !important;
+    filter:none !important;
+  }
+  #submitBtn[disabled], #printBtn[disabled]{
+    background:#D63384 !important;
+    color:#ffffff !important;
+    opacity:1 !important;
+  }
+</style>
+<script id="btn-enable-script">
+  document.addEventListener('DOMContentLoaded', function(){
+    var sb = document.getElementById('submitBtn');
+    if (sb){ sb.disabled = false; sb.removeAttribute('disabled'); sb.style.opacity='1'; sb.style.color='#fff'; sb.style.background='#D63384'; }
+    var pb = document.getElementById('printBtn');
+    if (pb){ pb.disabled = false; pb.removeAttribute('disabled'); pb.style.opacity='1'; pb.style.color='#fff'; pb.style.background='#D63384'; }
+  });
+</script>
+
 </head>
 <body class="font-inter bg-gray-50 text-gray-800 leading-relaxed">
 
@@ -74,18 +126,8 @@
             <small class="text-gray-500">Formato: (11) 98765-4321 (celular) ou (21) 3456-7890 (fixo)</small>
           </div>
           <div>
-            <label class="block text-xs uppercase tracking-wide text-gray-700 mb-1">Área onde atua em RH</label>
-            <select name="area" required class="w-full rounded-lg px-4 py-3 border border-gray-300 outline-none focus:ring-4 focus:ring-accent/30">
-              <option value="" disabled selected>Selecione</option>
-              <option>Talent Acquisition</option>
-              <option>Business Partner (HRBP)</option>
-              <option>Comp & Ben (C&B)</option>
-              <option>Learning & Development (L&D)</option>
-              <option>Diversidade, Equidade e Inclusão (DEI)</option>
-              <option>People Analytics</option>
-              <option>Folha/Operações de RH</option>
-              <option>Outros</option>
-            </select>
+            <label class="block text-xs uppercase tracking-wide text-gray-700 mb-1">Área de atuação</label>
+            <select name="area" required class="w-full rounded-lg px-4 py-3 border border-gray-300 outline-none focus:ring-4 focus:ring-accent/30"><option value="" disabled selected>Selecione</option><option>Recursos Humanos</option><option>Marketing</option><option>Operações</option><option>Finanças</option><option>Tecnologia</option><option>Estudante/Primeira experiência</option><option>Outro</option></select>
           </div>
           <div>
             <label class="block text-xs uppercase tracking-wide text-gray-700 mb-1">Cargo</label>
@@ -107,8 +149,8 @@
             </label>
           </div>
 
-          <div class="md:col-span-2 text-center">
-            <button type="submit" class="btn">Acessar eBook</button>
+          <div class="md:col-span-2 text-center" style="margin-top:16px">
+            <button type="submit" id="submitBtn" class="btn" style="background:#D63384;color:#fff;padding:14px 22px;border-radius:10px;font-weight:800;display:inline-block;border:none;box-shadow:0 2px 6px rgba(0,0,0,.12);" style="background:#D63384 !important;color:#fff !important;padding:14px 22px !important;border-radius:10px !important;font-weight:800 !important;display:inline-block !important;border:none !important;box-shadow:0 2px 6px rgba(0,0,0,.12) !important;">Acessar eBook</button>
             <div id="msg" class="mt-2 muted"></div>
           </div>
         </form>
@@ -122,7 +164,7 @@
   <section id="view-ebook" class="hidden">
     <div class="ebook-topbar no-print">
       <div class="inner">
-        <button class="btn" onclick="window.print()">📥 Baixar este ebook (PDF)</button>
+        <button id="printBtn" class="btn"   onclick="window.print()" style="background:#D63384;color:#fff;padding:14px 22px;border-radius:10px;font-weight:800;display:inline-block;border:none;box-shadow:0 2px 6px rgba(0,0,0,.12);" style="background:#D63384 !important;color:#fff !important;padding:14px 22px !important;border-radius:10px !important;font-weight:800 !important;display:inline-block !important;border:none !important;box-shadow:0 2px 6px rgba(0,0,0,.12) !important;">📥 Baixar este ebook (PDF)</button>
         <a class="link-outline" href="https://bento.me/marianarodeio" target="_blank" rel="noopener">Conheça a mentoria</a>
       </div>
     </div>
@@ -746,7 +788,7 @@
     };
 
     msg.textContent = "Enviando...";
-    await postFormEncoded(BACKEND_URL, payload);
+    await fetch(BACKEND_URL, { method: 'POST', body: new URLSearchParams(payload) });
 
     formView.classList.add("hidden");
     ebookView.classList.remove("hidden");
